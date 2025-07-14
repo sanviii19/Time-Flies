@@ -52,7 +52,7 @@ A sleek and modern stopwatch application built with React and Vite, featuring an
 
 5. Open your browser and visit `http://localhost:5173`
 
-## 💡 Usage
+## Usage
 
 - Click the **Play** button to start the stopwatch
 - Click **Pause** to stop the timer
