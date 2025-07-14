@@ -1,4 +1,4 @@
-# Time FLies - Stopwatch App ⏱️
+# Time Flies - Stopwatch App ⏱️
 
 A sleek and modern stopwatch application built with React and Vite, featuring an elegant user interface with dark/light mode support.
 
