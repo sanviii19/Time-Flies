@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@200;400;500;600&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  min-height: 100%;
+  background: linear-gradient(135deg, #b11919 0%, #0f0fdb 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Modern, eye-comfortable base styles */
+a {
+  color: #43cea2;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #185a9d;
+}
+
+body {
+  background: linear-gradient(135deg, #aac515 0%, #2b162d 100%);
+  color: #e0e0e0;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #070909;
+  }
+  a {
+    color: #185a9d;
+  }
+  a:hover {
+    color: #43cea2;
+  }
+}

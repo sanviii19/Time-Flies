@@ -1,0 +1,328 @@
+
+:root {
+  --bg-gradient-dark-start: #524681;
+  --bg-gradient-dark-end: #20465f;
+  --bg-gradient-light-start: #90aed2;
+  --bg-gradient-light-end: #6e9cd8;
+  --btn-primary-dark: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+  --btn-primary-dark-hover: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+  --btn-primary-light: linear-gradient(90deg, #84aff5 0%, #4a77f3 100%);
+  --btn-primary-light-hover: linear-gradient(90deg, #4a77f3 0%, #84aff5 100%);
+  --btn-reset-dark: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+  --btn-reset-light: linear-gradient(90deg, #fa81c5 0%, #c22061 100%);
+  --text-dark: #ffffff;
+  --text-light: #1e293b;
+}
+
+.app-logo {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  font-family: 'Space Mono', monospace;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.app-logo span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 0 30px rgba(255, 255, 255, 0.1);
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.time-logo {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+.app-logo:hover .time-logo {
+  transform: rotate(15deg);
+}
+
+.light .app-logo span {
+  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 
+    0 0 10px rgba(30, 41, 59, 0.3),
+    0 0 20px rgba(30, 41, 59, 0.2),
+    0 0 30px rgba(30, 41, 59, 0.1);
+}
+
+.light .time-logo {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.3),
+      0 0 20px rgba(255, 255, 255, 0.2),
+      0 0 30px rgba(255, 255, 255, 0.1);
+  }
+  to {
+    text-shadow: 
+      0 0 12px rgba(255, 255, 255, 0.4),
+      0 0 24px rgba(255, 255, 255, 0.3),
+      0 0 36px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-gradient-dark-start) 0%, var(--bg-gradient-dark-end) 100%);
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+#root.light {
+  background: linear-gradient(135deg, var(--bg-gradient-light-start) 0%, var(--bg-gradient-light-end) 100%);
+}
+
+.stopwatch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  width: 100%;
+  max-width: 800px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-dark);
+  padding: 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle svg {
+  transition: transform 0.5s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.light .theme-toggle {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-light);
+}
+
+.light .theme-toggle:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stopwatch-time {
+  font-size: 8rem;
+  font-weight: 200;
+  color: var(--text-dark);
+  letter-spacing: 0.05em;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.2);
+  font-variant-numeric: tabular-nums;
+  font-family: 'Space Mono', monospace;
+  user-select: none;
+  line-height: 1;
+  background: linear-gradient(180deg, var(--text-dark) 0%, rgba(255, 255, 255, 0.8) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2s ease-in-out infinite;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stopwatch-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.stopwatch-btn {
+  background: var(--btn-primary-dark);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 1.2rem 2.8rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  min-width: 160px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.light .stopwatch-btn {
+  background: var(--btn-primary-light);
+}
+
+.stopwatch-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+  transform: translateX(-100%) rotate(45deg);
+  transition: transform 0.5s;
+}
+
+.stopwatch-btn:hover {
+  background: var(--btn-primary-dark-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.light .stopwatch-btn:hover {
+  background: var(--btn-primary-light-hover);
+}
+
+.stopwatch-btn:hover::before {
+  transform: translateX(100%) rotate(45deg);
+}
+
+.stopwatch-btn:active {
+  transform: translateY(1px);
+}
+
+.stopwatch-btn.reset {
+  background: var(--btn-reset-dark);
+}
+
+.light .stopwatch-btn.reset {
+  background: var(--btn-reset-light);
+}
+
+.stopwatch-btn.reset:hover {
+  background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+}
+
+.light .stopwatch-btn.reset:hover {
+  background: linear-gradient(90deg, #c22061 0%, #fa81c5 100%);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 768px) {
+  .stopwatch-time {
+    font-size: 6rem;
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(5px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin-top: auto;
+}
+
+.light .footer {
+  color: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer span {
+  display: inline-block;
+  margin: 0 0.5rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+  .stopwatch-container {
+    gap: 4rem;
+  }
+
+  .stopwatch-time {
+    font-size: 4rem;
+  }
+
+  .stopwatch-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .stopwatch-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  .footer {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}
